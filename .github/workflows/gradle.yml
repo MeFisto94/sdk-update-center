@@ -35,6 +35,9 @@ jobs:
   
     - name: List potential artifacts
       run: ls -lsh build/ && ls -lsh build/updates
+  
+    - name: Inspect the updates.xml file
+      run: cat build/updates/updates.xml
       
     - name: Upload nbms
       uses: softprops/action-gh-release@v1
