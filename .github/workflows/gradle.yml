@@ -56,6 +56,7 @@ jobs:
         path: xml
     - name: Setup Git for the commit
       run: git config user.email MeFisto94@users.noreply.github.com && git config user.name MeFisto94
+      working-directory: xml
     - name: Overwrite the updates.xml
       run: \cp -rf build/updates/updates.xml xml/updates.xml
     - name: Commit the updates.xml
