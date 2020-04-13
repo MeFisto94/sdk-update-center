@@ -48,3 +48,16 @@ jobs:
         name: Master Nightlies ${{ github.run_id }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Checkout the XML Repository
+      uses: actions/checkout@v2
+      with:
+        ref: master-xml
+        path: xml
+    - name: Setup Git for the commit
+      run: git config user.email MeFisto94@users.noreply.github.com && git config user.name MeFisto94
+    - name: Overwrite the updates.xml
+      run: \cp -rf build/updates/updates.xml xml/updates.xml
+    - name: Commit the updates.xml
+      working-directory: ./xml
+      run: git add updates.xml && git commit -m "Updating the nightlies to ${{ github.run_id}}" && git push
